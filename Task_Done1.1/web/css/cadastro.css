@@ -1,0 +1,89 @@
+body{
+    background: -webkit-linear-gradient(60deg, #2cbfc6, #30176b);
+	font-family: "Jost", sans-serif;
+}
+.container{
+    display: flex;
+	align-items: center;
+	justify-content: center;
+	min-height: 100vh;
+}
+.screen{
+    height: 800px;
+	width: 600px;
+    background: white;/*cor de fundo*/
+	position: relative;		
+	box-shadow: 0px 0px 24px #5C5696;/*sombra*/
+	border-radius: 20px;
+	transition: .5s ease-in-out;
+}
+.label_title{
+	color: #000000;
+	font-size: 2.3em;
+	justify-content: center;
+	display: flex;
+	text-align: center;
+	font-weight: bold;
+	cursor: pointer;
+	transition: .5s ease-in-out;
+	margin-bottom: 20px;
+}
+.label_text{
+    margin-left: 55px;
+	margin-bottom: 3px;
+	color: #000000;
+	display: flex;
+	font-weight: bold;
+	transition: .5s ease-in-out;
+}
+.login{
+    padding:20px;
+    padding-top:20%;
+	text-align: center;
+	transition: .5s ease-in-out;
+}
+.login_text{
+	padding: 10px;
+	font-weight: 700;
+	width: 80%;
+	transition: .2s;
+	border-radius: 3px;
+	transition: .5s ease-in-out;
+	border: solid 1px #ddd;
+}
+.login_submit{
+	width:80%;
+	border-radius: 3px;
+    padding:20px;
+    margin-top: 20px;
+	border:none;
+	background:#30176b;
+	color:white;
+	transition: .5s ease-in-out;
+}
+@media only screen and (max-device-width: 1200px) {
+	 .screen { 
+		height:1500px;
+		width:680px;
+	 }
+	 .login{
+		width:640px;
+	 } 
+	 .login_text{
+		padding: 20px;
+		font-size: 2.0em;
+	 }
+     .login_submit{
+		font-size: 2.0em;
+		padding:40px;
+		margin-top: 40px;
+	 }
+	 .label_title{
+		font-size: 4.6em;
+        padding-bottom: 60px;
+	 }
+	 .label_text{
+		font-size: 2.0em;
+		margin-left: 60px;
+	 }
+	}

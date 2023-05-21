@@ -1,0 +1,30 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Login</title>
+        <link href="css/login.css" type="text/css" rel="stylesheet">
+    </head>
+    <body>
+        <div class="container">
+            <div class = "screen">
+                <div class="login">
+                    <form action="Controller_Autenticacao" method="post">
+                        <label class="label_title" for="chk" aria-hidden="true">Login</label>
+                        <div class="login__field">
+                            <label class="label_text">Usuário</label>
+                            <input type ="text" class="login_text" placeholder="digite seu usuário" name="txtUSU_USUARIO">
+                        </div><br>
+                        <div class="login_field">
+                            <label class="label_text">Senha</label>
+                            <input type ="password" class="login_text" placeholder="digite sua senha" name="txtUSU_SENHA">
+                        </div><br>
+                        <input type ="submit" class="login_submit" value="Login" name="operacao">
+                    </form>
+                    <form action="cadastro.html">
+                        <input type="submit" class="login_submit" value="Não possui cadastro?">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
