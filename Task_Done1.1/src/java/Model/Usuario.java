@@ -78,10 +78,7 @@ public class Usuario {
         Connection con = Conexao.getConexao();
 
         //contruir string sql bem formada e vinculada com a conexao
-        /*String sql = "select id, nome, login, senha, nivelacesso "
-                + "   from tb_usuario "
-                + "   where login = '" + login + "' and senha = '" + senha + "'";
-        Statement comando = con.createStatement();*/
+      
         String sql = "select USU_ID, USU_USUARIO, USU_SENHA "
                 + "from TB_USUARIOS where USU_USUARIO = ? and USU_SENHA = ?";
         PreparedStatement comando = con.prepareStatement(sql);
