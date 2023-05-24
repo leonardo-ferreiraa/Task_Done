@@ -5,11 +5,8 @@
  */
 package Controller;
 
-import Model.Usuario;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.SQLException;
-import java.util.HashSet;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -18,10 +15,10 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author proft
+ * @author alunos
  */
-@WebServlet(name = "Controller_Usuario", urlPatterns = {"/Controller_Usuario"})
-public class Controller_Usuario extends HttpServlet {
+@WebServlet(name = "Controller", urlPatterns = {"/Controller"})
+public class Controller_Agenda extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,41 +33,9 @@ public class Controller_Usuario extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            String mensagem = "";
-            String pagina = "";
-            Usuario usu = new Usuario();
+            
+            /* TODO output your page here. You may use following sample code. */
 
-            String operacao = request.getParameter("operacao");
-            if (operacao.equals("Login")) {
-                String USU_USUARIO = request.getParameter("txtUSU_USUARIO");
-                String USU_SENHA = request.getParameter("txtUSU_SENHA");
-
-                usu.setUSU_USUARIO(USU_USUARIO);
-                usu.setUSU_SENHA(USU_SENHA);
-
-                try {
-                    if (usu.autenticar()) {
-                        mensagem = "Logado com sucesso!!";
-                        pagina = "agenda.jsp";
-                    } else {
-                        mensagem = "Login ou senha não combinam";
-                        pagina = "erroautenticacao.jsp";
-                    }
-
-                } catch (SQLException ex) {
-                    mensagem = "Erro SQL: " + ex.getMessage();
-                    pagina = "erro.jsp";
-                } catch (ClassNotFoundException ex) {
-                    mensagem = "Erro CNF: " + ex.getMessage();
-                    pagina = "erro.jsp";
-                }
-            }
-
-            request.setAttribute("usu", usu);
-
-            request.setAttribute("mensagem", mensagem);
-            request.getRequestDispatcher("/" + pagina).forward(request, response);
-            request.setAttribute("mensagem", mensagem);
         }
     }
 
