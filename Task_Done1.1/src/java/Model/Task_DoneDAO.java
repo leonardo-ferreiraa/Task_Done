@@ -64,11 +64,19 @@ public class Task_DoneDAO {
         con.close();
     }
 
-    public void select(Agenda a) throws ClassNotFoundException, SQLException {
+    public List <Agenda> select() throws ClassNotFoundException, SQLException {
         Connection con = Conexao.getConexao();
         PreparedStatement comando = con.prepareStatement("select * from TB_TAREFAS");
-        comando.execute();
-        con.close();
+        ResultSet rs = comando.executeQuery();
+        
+        List<Agenda> lprod = new ArrayList<Agenda>();
+        while (rs.next()) {
+            Agenda agenda = new Agenda();
+            agenda.setTR_TITULO(rs.getString("TR_TITULO"));
+            agenda.setTR_TAREFA(rs.getString("TR_TAREFA"));
+            lprod.add(agenda);            
+        }
+        return lprod;
     }
     
     /*caso seja 
