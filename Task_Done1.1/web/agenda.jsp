@@ -4,31 +4,46 @@
     Author     : proft
 --%>
 
+<%@page import="java.util.List"%>
+<%@page import="Model.Agenda"%>
 <%@page import="Model.Usuario"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta charset="UTF-8">
         <link href="css/tarefa.css" type="text/css" rel="stylesheet">
         <title>Tarefa</title>
     </head>
     <body>
-        <% Usuario usu = (Usuario) request.getAttribute("usu");%>
         <div class="container">
-            <div class="screen">
-                <div class="tarefas">
-                    <label class="label_title">Titulo</label>
-                    <p>O vídeo fornece uma maneira poderosa de ajudá-lo a provar seu argumento. Ao clicar em Vídeo Online, você pode colar o código de inserção do vídeo que deseja adicionar.
-                        Você também pode digitar uma palavra-chave para pesquisar online o vídeo mais adequado ao seu documento. Para dar ao documento uma aparência profissional, o Word fornece designs de cabeçalho, rodapé, folha de rosto e caixa de texto que se complementam entre si.
-                        Por exemplo, você pode adicionar uma folha de rosto, um cabeçalho e uma barra lateral correspondentes. Clique em Inserir e escolha os elementos desejados nas diferentes galerias.
-                    </p>
-                    <input type="submit" value="+">
-                    <input type="submit" value="-">
+                    <% List<Agenda> listtarefa = (List<Agenda>) request.getAttribute("listtarefa");%>
+            <%if (listtarefa.size() > 0){
+                for (Agenda a : listtarefa){
+        %><div class="screen"><%
+            %><div class="cartao"> <%              
+                %><label class="label_title"><%out.println(a.getTR_TITULO());%></label><%
+                %><p><%out.println(a.getTR_TAREFA());%></p><%                             
+                %><form action="Controller_Agenda" method="post"><%
+                    %><div class="botoes"><%
+                        %><input class="edit" type="submit" value="EDITAR"><%
+                        %><input class="delete" type="submit" name="operacao" value="DELETAR"><%
+                    %></div><%
+                %></form><%
+            %></div><%              
+        %></div><%
+                }
+            }else
+                out.println("Consulta sem retorno");
+            %><div class="screen">
+                <div class="cartao">               
+                    <input class="titulo" type="text">
+                    <br>
+                    <textarea class="tarefa" type="text"></textarea>
+                    <br>
+                    <input class="criar_tarefa" type="submit" value="CRIAR">
                 </div>
             </div>
-
         </div>
-
     </body>
 </html>
