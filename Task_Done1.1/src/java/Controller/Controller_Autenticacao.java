@@ -5,11 +5,14 @@
  */
 package Controller;
 
+import Model.Agenda;
 import Model.Usuario;
+import Model.Task_DoneDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.HashSet;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -50,8 +53,18 @@ public class Controller_Autenticacao extends HttpServlet {
 
                 try {
                     if (usu.autenticar()) {
-                        mensagem = "Logado com sucesso!!";
-                        pagina = "agenda.jsp";
+                    Task_DoneDAO pdao = new Task_DoneDAO();
+                    try {
+                        mensagem = "Logado com sucesso!";
+                        List<Agenda> listtarefa = pdao.select();
+                        request.setAttribute("listtarefa",listtarefa);
+                        request.getRequestDispatcher("agenda.jsp").forward(request,response);
+                    } catch (ClassNotFoundException ex) {
+                        System.out.println("Erro ClassNotFound: " + ex.getMessage());
+                    } catch (SQLException ex) {
+                        System.out.println("Erro SQL: " + ex.getMessage());
+
+                }
                     } else {
                         mensagem = "Login ou senha não combinam";
                         pagina = "erroautenticacao.jsp";
