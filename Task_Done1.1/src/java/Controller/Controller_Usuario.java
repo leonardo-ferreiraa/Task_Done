@@ -5,8 +5,11 @@
  */
 package Controller;
 
+import Model.Task_DoneDAO;
+import Model.Usuario;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -17,8 +20,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author alunos
  */
-@WebServlet(name = "Controller", urlPatterns = {"/Controller"})
-public class Controller_Agenda extends HttpServlet {
+@WebServlet(name = "Controller_Usuario", urlPatterns = {"/Controller_Usuario"})
+public class Controller_Usuario extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,8 +37,38 @@ public class Controller_Agenda extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             
-            /* TODO output your page here. You may use following sample code. */
-
+            String op = request.getParameter("operacao");
+            if (op.equals("CADASTRAR")) {
+                Usuario u = new Usuario();
+                u.setUSU_NOME(request.getParameter("txtnome"));
+                u.setUSU_IDADE(request.getParameter("txtidade"));
+                u.setUSU_TELEFONE(request.getParameter("txttelefone"));
+                u.setUSU_USUARIO(request.getParameter("txtusuario"));
+                u.setUSU_SENHA(request.getParameter("txtsenha"));
+                
+                Task_DoneDAO udao = new Task_DoneDAO();
+                
+                try {
+                    udao.cadastrarUsuario(u);
+                    request.setAttribute("Usuario", u);
+                    request.getRequestDispatcher("index.html").forward(request, response);
+                }
+                catch (ClassNotFoundException ex) {
+                    System.out.println("Erro ClassNotFound: " + ex.getMessage());
+                }catch (SQLException ex) {
+                    System.out.println("Erro SQL: " + ex.getMessage());
+                }
+            }
+            
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet Controller_Usuario</title>");            
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet Controller_Usuario at " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
         }
     }
 
