@@ -8,29 +8,29 @@
         <div class="container">
             <div class = "screen">
                 <div class="login">
-                    <form>
+                    <form action="Controller_Usuario" method="post">
                         <label class="label_title" for="chk" aria-hidden="true">Cadastro</label>
                         <div class="login__field">
                             <label class="label_text">Nome</label>
-                            <input type ="text" class="login_text" placeholder="digite seu Nome">
+                            <input type ="text" class="login_text" placeholder="digite seu Nome" name="txtnome">
                             </div><br>
                         <div class="login__field">  
                             <label class="label_text">Idade</label>
-                            <input type ="password" class="login_text" placeholder="Idade">
+                            <input type ="text" class="login_text" placeholder="Idade" name="txtidade">
                         </div><br>
                         <div class="login__field">  
                             <label class="label_text">Telefone</label>
-                            <input type ="password" class="login_text" placeholder="Telefone">
+                            <input type ="text" class="login_text" placeholder="Telefone" name="txttelefone">
                         </div><br>
                         <div class="login__field">  
                             <label class="label_text">Usuário</label>
-                            <input type ="password" class="login_text" placeholder="Usuário">
+                            <input type ="text" class="login_text" placeholder="Usuário" name="txtusuario">
                         </div><br>
                         <div class="login__field">  
                             <label class="label_text">Senha</label>
-                            <input type ="password" class="login_text" placeholder="digite sua senha">
+                            <input type ="password" class="login_text" placeholder="digite sua senha" name="txtsenha">
                         </div><br>
-                        <input type ="submit" class="login_submit" value="Logar">
+                        <input type ="submit" class="login_submit" value="CADASTRAR" name="operacao">
                     </form>
                     <form action="index.html">
                         <input type="submit" class="login_submit" value="Já possui login?">
