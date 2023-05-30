@@ -23,7 +23,8 @@
         %><div class="screen"><%
             %><div class="cartao"> <%              
                 %><label class="label_title"><%out.println(a.getTR_TITULO());%></label><%
-                %><p><%out.println(a.getTR_TAREFA());%></p><%                             
+                %><p><%out.println(a.getTR_TAREFA());%></p><%
+                %><p hidden name="operacao" value='ID'><%out.println(a.getTR_ID());%></p><%
                 %><form action="Controller_Agenda" method="post"><%
                     %><div class="botoes"><%
                         %><input class="edit" type="submit" value="EDITAR"><%
