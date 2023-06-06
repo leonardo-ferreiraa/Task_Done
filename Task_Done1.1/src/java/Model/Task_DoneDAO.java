@@ -18,7 +18,7 @@ public class Task_DoneDAO {
         //se conecta com a classe conexao.java
         Connection con = Conexao.getConexao();
         //uma um comando do SQL para inserir um dado
-        PreparedStatement comando = con.prepareStatement("insert into TB_TAREFAS(TR_TITULO,TR_TAREFA,TR_CONCLUIDO,TR_ATIVO)values(?,?,FALSE,FALSE)");
+        PreparedStatement comando = con.prepareStatement("insert into TB_TAREFAS(TR_TITULO,TR_TAREFA,TR_CONCLUIDO,TR_ATIVO, TR_DATA_CADASTRO, TR_LOG)values(?,?,FALSE,FALSE, NOW(),NOW())");
         comando.setString(1, a.getTR_TITULO());
         comando.setString(2, a.getTR_TAREFA());       
         comando.execute();
@@ -28,19 +28,20 @@ public class Task_DoneDAO {
         //se conecta com a classe conexao.java
         Connection con = Conexao.getConexao();
         //uma um comando do SQL para inserir um dado
-        PreparedStatement comando = con.prepareStatement("insert into TB_USUARIOS(USU_NOME,USU_IDADE,USU_TELEFONE,USU_USUARIO,USU_SENHA)values(?,?,?,?,?)");
+        PreparedStatement comando = con.prepareStatement("insert into TB_USUARIOS(USU_NOME,USU_IDADE,USU_TELEFONE,USU_USUARIO,USU_SENHA, USU_DATA_CADASTRO, USU_LOG_ACESSO, USU_NIVEL_ACESSO)values(?,?,?,?,?, NOW(),NOW(),0)");
         comando.setString(1, User.getUSU_NOME());
-        comando.setString(2, User.getUSU_IDADE()); 
-        comando.setString(2, User.getUSU_TELEFONE());
-        comando.setString(2, User.getUSU_USUARIO());
-        comando.setString(2, User.getUSU_SENHA());
+        comando.setInt(2, User.getUSU_IDADE()); 
+        comando.setString(3, User.getUSU_TELEFONE());
+        comando.setString(4, User.getUSU_USUARIO());
+        comando.setString(5, User.getUSU_SENHA());
         comando.execute();
+       
         con.close();
     }
 
     public void deletarAgenda(Agenda a) throws ClassNotFoundException, SQLException {
         Connection con = Conexao.getConexao();
-        PreparedStatement comando = con.prepareStatement("delete from  where TR_ID = ?");
+        PreparedStatement comando = con.prepareStatement("delete from TB_TAREFAS where TR_ID=?");
         comando.setInt(1, a.getTR_ID());
         comando.execute();
         con.close();
@@ -48,7 +49,7 @@ public class Task_DoneDAO {
     
     public void deletarUsuario(Usuario User) throws ClassNotFoundException, SQLException {
         Connection con = Conexao.getConexao();
-        PreparedStatement comando = con.prepareStatement("delete from  where USU_ID = ?");
+        PreparedStatement comando = con.prepareStatement("delete from TB_USUARIOS where USU_ID = ?");
         comando.setInt(1, User.getUSU_ID());
         comando.execute();
         con.close();
@@ -56,7 +57,7 @@ public class Task_DoneDAO {
 
     public void updateAgenda(Agenda a) throws ClassNotFoundException, SQLException {
         Connection con = Conexao.getConexao();
-        PreparedStatement comando = con.prepareStatement("update TB_TAREFAS set TR_TITULO = ?, TR_TAREFA = ?, where TR_ID = ?");
+        PreparedStatement comando = con.prepareStatement("update TB_TAREFAS set TR_TITULO =?, TR_TAREFA =? where TR_ID =?");
         comando.setString(1, a.getTR_TITULO());
         comando.setString(2, a.getTR_TAREFA());
         comando.setInt(3, a.getTR_ID());
@@ -72,9 +73,11 @@ public class Task_DoneDAO {
         List<Agenda> lprod = new ArrayList<Agenda>();
         while (rs.next()) {
             Agenda agenda = new Agenda();
+            agenda.setTR_ID(rs.getInt("TR_ID"));
             agenda.setTR_TITULO(rs.getString("TR_TITULO"));
             agenda.setTR_TAREFA(rs.getString("TR_TAREFA"));
-            lprod.add(agenda);            
+            lprod.add(agenda);
+            
         }
         return lprod;
     }
