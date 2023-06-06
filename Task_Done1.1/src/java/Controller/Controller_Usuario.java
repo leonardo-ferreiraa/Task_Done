@@ -41,7 +41,7 @@ public class Controller_Usuario extends HttpServlet {
             if (op.equals("CADASTRAR")) {
                 Usuario u = new Usuario();
                 u.setUSU_NOME(request.getParameter("txtnome"));
-                u.setUSU_IDADE(request.getParameter("txtidade"));
+                u.setUSU_IDADE(Integer.parseInt(request.getParameter("txtidade")));
                 u.setUSU_TELEFONE(request.getParameter("txttelefone"));
                 u.setUSU_USUARIO(request.getParameter("txtusuario"));
                 u.setUSU_SENHA(request.getParameter("txtsenha"));
@@ -59,16 +59,6 @@ public class Controller_Usuario extends HttpServlet {
                     System.out.println("Erro SQL: " + ex.getMessage());
                 }
             }
-            
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet Controller_Usuario</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet Controller_Usuario at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
         }
     }
 
