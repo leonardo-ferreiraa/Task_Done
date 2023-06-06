@@ -20,29 +20,47 @@
                     <% List<Agenda> listtarefa = (List<Agenda>) request.getAttribute("listtarefa");%>
             <%if (listtarefa.size() > 0){
                 for (Agenda a : listtarefa){
-        %><div class="screen"><%
-            %><div class="cartao"> <%              
-                %><label class="label_title"><%out.println(a.getTR_TITULO());%></label><%
-                %><p><%out.println(a.getTR_TAREFA());%></p><%
-                %><p hidden name="operacao" value='ID'><%out.println(a.getTR_ID());%></p><%
-                %><form action="Controller_Agenda" method="post"><%
-                    %><div class="botoes"><%
-                        %><input class="edit" type="submit" value="EDITAR"><%
-                        %><input class="delete" type="submit" name="operacao" value="DELETAR"><%
-                    %></div><%
-                %></form><%
-            %></div><%              
-        %></div><%
+        %><div class="screen">
+            <div class="cartao"> 
+                <label class="label_title"><%out.println(a.getTR_TITULO());%></label>
+                <p><%out.println(a.getTR_TAREFA());%></p>
+                <form action="Controller_Agenda" method="post">
+                    <div class="botoes">
+                        <input type="hidden" name="txtID"value=<%out.println(a.getTR_ID());%> name="txtID">
+                        <input type="submit" class="edit"  value="EDITAR">
+                        <input type="submit" class="delete" value="DELETAR" name="operacao">
+                    </div>
+                </form>
+            </div>
+        </div>
+                        <p></p>
+                    <div class="screen">
+                <div class="cartao">
+                    <form action="Controller_Agenda" method="post">
+                        <input class="titulo" type="text" name="txttitulo">
+                        <br>
+                        <input type="hidden" name="txtID"value=<%out.println(a.getTR_ID());%> name="txtID">
+                        <textarea class="tarefa" type="text" name="txttarefa"></textarea>
+                        <br>
+                        <input class="criar_tarefa" type="submit" value="CRIAR" name="operacao">  
+                        <input class="criar_tarefa" type="submit" value="EDITAR" name="operacao">  
+                    </form>
+                </div>
+            </div>
+            <%
                 }
             }else
                 out.println("Consulta sem retorno");
             %><div class="screen">
-                <div class="cartao">               
-                    <input class="titulo" type="text">
-                    <br>
-                    <textarea class="tarefa" type="text"></textarea>
-                    <br>
-                    <input class="criar_tarefa" type="submit" value="CRIAR">
+                <div class="cartao">
+                    <form action="Controller_Agenda" method="post">
+                        <input class="titulo" type="text" name="txttitulo">
+                        <br>
+                        <textarea class="tarefa" type="text" name="txttarefa"></textarea>
+                        <br>
+                        <input class="criar_tarefa" type="submit" value="CRIAR" name="operacao">  
+                        <input class="criar_tarefa" type="submit" value="EDITAR" name="operacao">  
+                    </form>
                 </div>
             </div>
         </div>
