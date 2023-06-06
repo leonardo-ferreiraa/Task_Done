@@ -22,7 +22,7 @@ public class Agenda {
         return TR_ID;
     }
 
-    public void setId(int TR_ID) {
+    public void setTR_ID(int TR_ID) {
         this.TR_ID = TR_ID;
     }
     
