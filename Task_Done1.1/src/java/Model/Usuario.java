@@ -19,7 +19,7 @@ public class Usuario {
     
    private int USU_ID;
    private String USU_NOME;
-   private String USU_IDADE;
+   private int USU_IDADE;
    private String USU_TELEFONE;
    private String USU_USUARIO;
    private String USU_SENHA;
@@ -40,11 +40,11 @@ public class Usuario {
         this.USU_NOME = USU_NOME;
     }
 
-    public String getUSU_IDADE() {
+    public int getUSU_IDADE() {
         return USU_IDADE;
     }
 
-    public void setUSU_IDADE(String USU_IDADE) {
+    public void setUSU_IDADE(int USU_IDADE) {
         this.USU_IDADE = USU_IDADE;
     }
 
