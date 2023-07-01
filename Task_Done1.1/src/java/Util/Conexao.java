@@ -18,7 +18,7 @@ public class Conexao {
     public static Connection getConexao() throws ClassNotFoundException, SQLException{
         //Carregar Driver  e criar conexao
         Class.forName("org.postgresql.Driver");
-        Connection con =  DriverManager.getConnection("jdbc:postgresql://localhost:5432/Task_Done", "postgres", "umc@2022");       
+        Connection con =  DriverManager.getConnection("jdbc:postgresql://localhost:5432/Task_Done", "postgres", "postgres");       
         return con;
     }
     
